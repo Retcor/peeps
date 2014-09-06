@@ -9,32 +9,67 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
     <title>Peeps</title>
 </head>
 <body>
 
-<c:if test="${!empty firstName}">
+<c:if test="${isSuccess}">
     Congrats! You created a customer!
 </c:if>
 
 
-<form id="createEmployee" action="/createPeep" method="POST">
+<form id="createEmployee" action="${pageContext.request.contextPath}/createPeep" method="POST">
 
-Create New Employee <br/>
+<table>
+    <tbody>
+        <tr>
+            <td>Create New Employee</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><label for="firstName">First Name: </label></td>
+            <td><input id="firstName" name="firstName"/></td>
+        </tr>
+        <tr>
+            <td><label for="lastName">Last Name: </label></td>
+            <td><input id="lastName" name="lastName"/></td>
+        </tr>
+        <tr>
+            <td><label for="address1">Primary Address: </label></td>
+            <td><input id="address1" name="address1"/></td>
+        </tr>
+        <tr>
+            <td><label for="address2">Secondary Address: </label></td>
+            <td><input id="address2" name="address2"/></td>
+        </tr>
+        <tr>
+            <td><label for="city">City: </label></td>
+            <td><input id="city" name="city"/></td>
+        </tr>
+        <tr>
+            <td><label for="state">State: </label></td>
+            <td><input id="state" name="state"/></td>
+        </tr>
+        <tr>
+            <td><label for="zip">Zip: </label></td>
+            <td><input id="zip" name="zip"/> // Create a address lookup function</td>
+        </tr>
+        <tr>
+            <td><label for="phone">Phone: </label></td>
+            <td><input id="phone" name="phone"/></td>
+        </tr>
+        <tr>
+            <td><label for="startDate">Start Date: </label></td>
+            <td><input id="startDate" name="startDate"/></td>
+        </tr>
+        <tr>
+            <td><a href="${pageContext.request.contextPath}/viewAndEdit"> <label>Edit a Peep</label></a></td>
+            <td><button type="submit">Create Peep</button></td>
+        </tr>
+    </tbody>
+</table>
 
-    <label for="firstName">First Name: </label><input id="firstName" name="firstName"/><br/>
-    <label for="lastName">Last Name: </label><input id="lastName" name="lastName"/><br/>
-    <label for="address1">Primary Address: </label><input id="address1" name="address1"/><br/>
-    <label for="address2">Secondary Address: </label><input id="address2" name="address2"/><br/>
-    <label for="city">City: </label><input id="city" name="city"/><br/>
-    <label for="state">State: </label><input id="state" name="state"/><br/>
-    <label for="zip">Zip: </label><input id="zip" name="zip"/> // Create a address lookup function<br/>
-    <label for="phone">Phone: </label><input id="phone" name="phone"/><br/>
-    <label for="startDate">Start Date: </label><input id="startDate" name="startDate"/><br/>
-
-<a href="/viewAndEdit"> <label>Edit a Peep</label></a>
-
-    <button type="submit">Create Peep</button>
 </form>
 </body>
 </html>
