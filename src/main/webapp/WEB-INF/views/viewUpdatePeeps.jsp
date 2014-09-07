@@ -9,34 +9,52 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <script src="${pageContext.request.contextPath}/resources/js/list.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css"/>
     <title>Peeps</title>
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/addPeep"> <label>Add a Peep</label></a>
 
 <div id="peeps">
     <input class="search" placeholder="Search"/>
-    <button class="sort" data-sort="name">
-        Sort by name
-    </button>
 
     <table>
+        <tr>
+            <th>Employee ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Primary Address</th>
+            <th>Secondary Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+            <th>Phone</th>
+            <th>Start Date</th>
+        </tr>
         <tbody class="list">
-            <c:forEach items="${peeps}" var="customer">
+            <c:forEach items="${peeps}" var="peep">
             <tr>
-                <td class="firstName">${customer.firstName}</td>
-                <td class="LastName">${customer.lastName}</td>
+                <td class="employeeId">${peep.employeeId}</td>
+                <td class="firstName">${peep.firstName}</td>
+                <td class="lastName">${peep.lastName}</td>
+                <td class="address1">${peep.address1}</td>
+                <td class="address2">${peep.address2}</td>
+                <td class="city">${peep.city}</td>
+                <td class="state">${peep.state}</td>
+                <td class="zip">${peep.zip}</td>
+                <td class="phone">${peep.phone}</td>
+                <td class="startDate">${peep.startDate}</td>
             </tr>
             </c:forEach>
         </tbody>
     </table>
-
+    <a href="${pageContext.request.contextPath}/addPeep"> <label>Add a Peep</label></a>
 </div>
 
-<script src="${pageContext.request.contextPath}/resources/js/list.js"></script>
 <script type="text/javascript">
     var options = {
-        valueNames: [ 'firstName', 'lastName' ]
+        valueNames: [ 'employeeId', 'firstName', 'lastName', 'address1', 'address2',
+            'city', 'state', 'zip', 'phone', 'startDate']
     };
 
     //  new List(div id name, var above)

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- DATABASE CONNECTION SETTINGS -->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/peeps</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">postgres</property>
+
+        <!-- JDBC CONNECTION POOL -->
+        <property name="connection.pool_size">1</property>
+
+        <!-- SQL DIALECT = SO HIBERNATE KNOWS THE SQL LANGUAGE TYPE, IN THIS CASE, POSTGRESQL v9 -->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+
+        <!-- PRINT SQL -->
+        <property name="show_sql">true</property>
+
+        <!-- CREATE TABLE / OBJECTS IF NOT EXIST ALREADY -->
+        <property name="hbm2ddl.auto">update</property>
+
+        <!-- ANNOTATED ENTITY CLASSES -->
+        <mapping class="com.peeps.model.Peeps"/>
+
+    </session-factory>
+</hibernate-configuration>

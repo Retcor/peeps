@@ -10,6 +10,7 @@
 <html>
 <head>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css"/>
     <title>Peeps</title>
 </head>
 <body>
@@ -21,12 +22,9 @@
 
 <form id="createEmployee" action="${pageContext.request.contextPath}/createPeep" method="POST">
 
-<table>
+<table title="Create New Employee">
+    <caption>Create New Employee</caption>
     <tbody>
-        <tr>
-            <td>Create New Employee</td>
-            <td></td>
-        </tr>
         <tr>
             <td><label for="firstName">First Name: </label></td>
             <td><input id="firstName" name="firstName"/></td>
@@ -53,7 +51,7 @@
         </tr>
         <tr>
             <td><label for="zip">Zip: </label></td>
-            <td><input id="zip" name="zip"/> // Create a address lookup function</td>
+            <td><input id="zip" name="zip"/></td>
         </tr>
         <tr>
             <td><label for="phone">Phone: </label></td>
