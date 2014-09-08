@@ -19,12 +19,14 @@
 
     <table>
         <tr>
-            <td><input class="search" placeholder="Search"/></td>
+            <td><input id = "search" class="search" placeholder="Search"/></td>
             <td>
                 <select id="searchOptions" onchange="handleChange()">
                     <option value="all">All</option>
                     <option value="employeeId">Employee ID</option>
                     <option value="firstName">First Name</option>
+                    <option value="lastName">Last Name</option>
+                    <option value="startDate">Start Date</option>
                 </select>
             </td>
         </tr>
@@ -92,7 +94,19 @@
             this.options = {
                 valueNames: [ 'employeeId' ]
             };
-        } else if(selected == "all") {
+        } else if (selected == 'firstName') {
+            this.options = {
+                valueNames: [ 'firstName' ]
+            };
+        } else if (selected == 'lastName') {
+            this.options = {
+                valueNames: [ 'lastName' ]
+            };
+        } else if (selected == 'startDate') {
+            this.options = {
+                valueNames: [ 'startDate' ]
+            };
+        } else if (selected == "all") {
             this.options = {
                 valueNames: [ 'employeeId', 'firstName', 'lastName', 'address1', 'address2',
                     'city', 'state', 'zip', 'phone', 'startDate' ]
