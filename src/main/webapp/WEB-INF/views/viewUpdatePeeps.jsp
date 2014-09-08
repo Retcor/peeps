@@ -16,7 +16,20 @@
 <body>
 
 <div id="peeps">
-    <input class="search" placeholder="Search"/>
+
+    <table>
+        <tr>
+            <td><input class="search" placeholder="Search"/></td>
+            <td>
+                <select id="searchOptions" onchange="handleChange()">
+                    <option value="all">All</option>
+                    <option value="employeeId">Employee ID</option>
+                    <option value="firstName">First Name</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+
 
     <table>
         <tr>
@@ -33,7 +46,15 @@
         </tr>
         <tbody class="list">
             <c:forEach items="${peeps}" var="peep">
+            <%--Adding this to help styling--%>
+            <c:choose>
+                <c:when test="${peep.employeeId % 2 == 0}">
+            <tr class="even-row">
+                </c:when>
+                <c:otherwise>
             <tr>
+                </c:otherwise>
+            </c:choose>
                 <td class="employeeId">${peep.employeeId}</td>
                 <td class="firstName">${peep.firstName}</td>
                 <td class="lastName">${peep.lastName}</td>
@@ -48,17 +69,42 @@
             </c:forEach>
         </tbody>
     </table>
-    <a href="${pageContext.request.contextPath}/addPeep"> <label>Add a Peep</label></a>
+    <table>
+        <tr>
+            <td><a href="${pageContext.request.contextPath}/addPeep"> <label>Add a Peep</label></a></td>
+        </tr>
+    </table>
 </div>
 
 <script type="text/javascript">
-    var options = {
+    options = {
         valueNames: [ 'employeeId', 'firstName', 'lastName', 'address1', 'address2',
-            'city', 'state', 'zip', 'phone', 'startDate']
+            'city', 'state', 'zip', 'phone', 'startDate' ]
     };
 
-    //  new List(div id name, var above)
     var userList = new List('peeps', options);
+
+
+    function handleChange() {
+        var optionsList = document.getElementById("searchOptions");
+        var selected = optionsList.options[optionsList.selectedIndex].value;
+        if (selected == "employeeId") {
+            this.options = {
+                valueNames: [ 'employeeId' ]
+            };
+        } else if(selected == "all") {
+            this.options = {
+                valueNames: [ 'employeeId', 'firstName', 'lastName', 'address1', 'address2',
+                    'city', 'state', 'zip', 'phone', 'startDate' ]
+            };
+        }
+
+        userList = new List('peeps', options);
+    }
+
+
+    //  new List(div id name, var above)
+
 </script>
 </body>
 </html>
