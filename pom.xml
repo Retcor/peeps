@@ -21,6 +21,14 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- LOMBOK -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.14.6</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- SPRING -->
         <dependency>
             <groupId>org.springframework</groupId>

@@ -1,19 +1,14 @@
 package com.peeps.controller;
 
-import com.peeps.model.Peeps;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.AnnotationConfiguration;
+import com.peeps.service.PeepService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created by danbaker on 9/3/14.
@@ -21,7 +16,7 @@ import java.util.List;
 @Controller
 public class PeepsController {
     @Resource
-    Peeps peeps;
+    PeepService peepService;
 
     @RequestMapping("/addPeep")
     public String newEntry() {
@@ -30,15 +25,8 @@ public class PeepsController {
 
     @RequestMapping("/viewAndEdit")
     public String viewAndEditPeep(Model model) {
-        SessionFactory sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
 
-        Query query = session.createQuery("from Peeps");
-        List peeps = query.list();
-        session.close();
-
-        model.addAttribute("peeps",peeps);
+        model.addAttribute("peeps",peepService.getPeeps());
 
         return "viewUpdatePeeps";
     }
@@ -53,29 +41,26 @@ public class PeepsController {
                              @RequestParam(value = "zip")String zip,
                              @RequestParam(value = "phone")String phone,
                              @RequestParam(value = "startDate")String startDate,
-                             Model model) {
-        boolean isSuccess = true;
-//        SimpleDateFormat format = new SimpleDateFormat()
+                             RedirectAttributes model) {
 
-        peeps.setFirstName(firstName);
-        peeps.setLastName(lastName);
-        peeps.setAddress1(address1);
-        peeps.setAddress2(address2);
-        peeps.setCity(city);
-        peeps.setState(state);
-        peeps.setZip(zip);
-        peeps.setPhone(phone);
-//        peeps.setStartDate(new Date(startDate));
-
-        // TODO: This all needs to be in a Try/catch/finally block
-        SessionFactory sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        session.save(peeps);
-        session.getTransaction().commit();
-        session.close();
-
-        model.addAttribute("isSuccess", isSuccess);
+        model.addAttribute("isSuccess", peepService.createPeep(firstName,lastName,address1,address2,
+                city,state,zip,phone,startDate));
         return "addPeep";
+    }
+
+    @RequestMapping(value = "/editPeep", method = RequestMethod.POST)
+    public String editPeep(@RequestParam(value = "employeeId")int employeeId,
+                           @RequestParam(value = "firstName")String firstName,
+                           @RequestParam(value = "lastName")String lastName,
+                           @RequestParam(value = "address1")String address1,
+                           @RequestParam(value = "address2")String address2,
+                           @RequestParam(value = "city")String city,
+                           @RequestParam(value = "state")String state,
+                           @RequestParam(value = "zip")String zip,
+                           @RequestParam(value = "phone")String phone) {
+
+        peepService.editPeep(firstName,lastName,address1,address2,city,state,zip,phone,employeeId);
+
+        return "redirect:/viewUpdatePeeps";
     }
 }

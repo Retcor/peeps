@@ -27,11 +27,14 @@ body {
 }
 
 caption {
-    font-size: 50px;
+    font-size: 30px;
     font-family: Copperplate, "Copperplate Gothic Light", fantasy;
 }
 
-a {color:#666;}
+a {
+    color:#666;
+    text-decoration: none;
+}
 
 input#search {
     width: 300px;
@@ -40,21 +43,57 @@ input#search {
     font-family: Copperplate, "Copperplate Gothic Light", fantasy;
 }
 
-#content {width:65%; max-width:690px; margin:6% auto 0;}
+div.divLink {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+button.submit {
+    background:none!important;
+    border:none;
+    padding:0!important;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    font-family: Copperplate, "Copperplate Go   thic Light", fantasy;
+    font-size: 16px;
+    color:#666;
+}
 
 table {
     overflow:hidden;
     border:1px solid #d3d3d3;
     background:#fefefe;
-    width:70%;
+    width:450px;
     margin:5% auto 0;
     border-radius:5px;
 }
 
-th, td {padding:18px 28px 18px; text-align:center; }
+table.navigation {
+    margin-top: 10px;
+}
+
+th, td {padding:18px 28px 18px; text-align:left; }
 
 th {padding-top:22px; text-shadow: 1px 1px 1px #fff; background:#e8eaeb;}
 
 td {border-top:1px solid #e0e0e0; border-right:1px solid #e0e0e0;}
 
 tr.even-row td {background:#f6f6f6;}
+
+td.navigation {
+    text-shadow: 1px 1px 1px #fff; background:#e8eaeb;
+    width: 50%;
+}
+
+td.navigation:hover {
+    background: #f6f6f6;
+    width: 50%;
+}
+
+td.successMessage {
+    background: #47b101;
+    color: #fefefe;
+    text-align: center;
+}

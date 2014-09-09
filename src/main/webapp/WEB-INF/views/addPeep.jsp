@@ -15,11 +15,6 @@
 </head>
 <body>
 
-<c:if test="${isSuccess}">
-    Congrats! You created a customer!
-</c:if>
-
-
 <form id="createEmployee" action="${pageContext.request.contextPath}/createPeep" method="POST">
 
 <table title="Create New Employee">
@@ -59,14 +54,37 @@
         </tr>
         <tr>
             <td><label for="startDate">Start Date: </label></td>
-            <td><input id="startDate" name="startDate"/></td>
+            <td><input id="startDate" name="startDate" type="date"/></td>
         </tr>
-        <tr>
-            <td><a href="${pageContext.request.contextPath}/viewAndEdit"> <label>Edit a Peep</label></a></td>
-            <td><button type="submit">Create Peep</button></td>
-        </tr>
+
     </tbody>
 </table>
+<table class="navigation">
+    <tbody>
+    <tr>
+        <td class="navigation">
+            <a href="${pageContext.request.contextPath}/viewAndEdit">
+                <div class="divLink">Edit a Peep</div>
+            </a>
+        </td>
+        <td class="navigation">
+            <button type="submit" class="submit">Create</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<c:if test="${isSuccess}">
+    <table id="successTable">
+        <tbody>
+        <tr>
+            <td class="successMessage">
+                Congrats! You created a Peep!
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</c:if>
 
 </form>
 </body>
