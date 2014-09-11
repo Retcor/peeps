@@ -3,6 +3,7 @@ package com.peeps.model;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Repository;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,8 +11,11 @@ import java.util.Date;
 /**
  * Created by danbaker on 9/5/14.
  *
+ * @Data - Auto generates getters and setters
  * @Entity - This will ensure Hibernate will pick up this class and create a table in the
  *      Database if needed
+ * @Repository - Allows Spring to recognize this class to allow for dependency injection
+ * @Table - Tells Hibernate what table to look at / create
  */
 @Data
 @Entity

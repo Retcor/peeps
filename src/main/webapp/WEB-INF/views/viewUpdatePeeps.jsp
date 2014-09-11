@@ -34,8 +34,9 @@
 
 
     <table>
+        <caption>Employees</caption>
         <tr>
-            <th>Employee ID</th>
+            <th>ID</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Primary Address</th>
@@ -90,6 +91,11 @@
     function handleChange() {
         var optionsList = document.getElementById("searchOptions");
         var selected = optionsList.options[optionsList.selectedIndex].value;
+        var searchValue = document.getElementById("search");
+
+        if (searchValue.value != "") {
+            searchValue.value = "";
+        }
         if (selected == "employeeId") {
             this.options = {
                 valueNames: [ 'employeeId' ]

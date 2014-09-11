@@ -59,12 +59,12 @@
 
     </tbody>
 </table>
-<table class="navigation">
+<table>
     <tbody>
     <tr>
         <td class="navigation">
             <a href="${pageContext.request.contextPath}/viewAndEdit">
-                <div class="divLink">Edit a Peep</div>
+                <div class="divLink">Edit Existing</div>
             </a>
         </td>
         <td class="navigation">
@@ -79,7 +79,7 @@
         <tbody>
         <tr>
             <td class="successMessage">
-                Congrats! You created a Peep!
+                Congrats! You created an Employee!
             </td>
         </tr>
         </tbody>
