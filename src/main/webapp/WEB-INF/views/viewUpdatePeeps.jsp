@@ -12,7 +12,6 @@
     <script src="${pageContext.request.contextPath}/resources/js/list.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery-2.1.1.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/list.pagination.min.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/jquery-ui.css"/>
     <title>Peeps</title>
@@ -89,6 +88,8 @@
 
 <script type="text/javascript">
     $(function() {
+        // ======= List.JS Required Information =============
+        // List.JS needs this information to know what to search
         options = {
             valueNames: [ 'employeeId', 'firstName', 'lastName', 'address1', 'address2',
                 'city', 'state', 'zip', 'phone', 'startDate' ]
@@ -124,6 +125,8 @@
 
             userList = new List('peeps', options);
         });
+
+        // ==================================================
 
         $("#search").keyup(function() {
             if($(this).val() != '') {
