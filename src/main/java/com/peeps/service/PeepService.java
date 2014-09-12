@@ -8,6 +8,9 @@ import org.hibernate.cfg.AnnotationConfiguration;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,17 +36,20 @@ public class PeepService {
     public boolean createPeep(String firstName,String lastName,String address1,String address2,String city,
                               String state,String zip,String phone,String startDate) {
         boolean isSuccess = true;
-//        SimpleDateFormat format = new SimpleDateFormat()
-
-        peeps.setFirstName(firstName);
-        peeps.setLastName(lastName);
-        peeps.setAddress1(address1);
-        peeps.setAddress2(address2);
-        peeps.setCity(city);
-        peeps.setState(state);
-        peeps.setZip(zip);
-        peeps.setPhone(phone);
-//        peeps.setStartDate(new Date(startDate));
+        try {
+            Date parsedStartDate = new SimpleDateFormat("MM/dd/yyyy").parse(startDate);
+            peeps.setFirstName(firstName);
+            peeps.setLastName(lastName);
+            peeps.setAddress1(address1);
+            peeps.setAddress2(address2);
+            peeps.setCity(city);
+            peeps.setState(state);
+            peeps.setZip(zip);
+            peeps.setPhone(phone);
+            peeps.setStartDate(parsedStartDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         try {
             SessionFactory sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
