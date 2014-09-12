@@ -9,8 +9,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/list.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery-2.1.1.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/jquery-ui.css"/>
     <title>Peeps</title>
 </head>
 <body>
@@ -87,5 +90,11 @@
 </c:if>
 
 </form>
+
+<script type="text/javascript">
+    $(function() {
+        $("#startDate").datepicker();
+    });
+</script>
 </body>
 </html>

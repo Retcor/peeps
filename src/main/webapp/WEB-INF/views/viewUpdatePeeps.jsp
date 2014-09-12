@@ -10,7 +10,11 @@
 <html>
 <head>
     <script src="${pageContext.request.contextPath}/resources/js/list.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery-2.1.1.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/list.pagination.min.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/jquery-ui.css"/>
     <title>Peeps</title>
 </head>
 <body>
@@ -21,7 +25,7 @@
         <tr>
             <td><input id = "search" class="search" placeholder="Search"/></td>
             <td>
-                <select id="searchOptions" onchange="handleChange()">
+                <select id="searchOptions">
                     <option value="all">All</option>
                     <option value="employeeId">Employee ID</option>
                     <option value="firstName">First Name</option>
@@ -74,56 +78,67 @@
     </table>
     <table>
         <tr>
-            <td><a href="${pageContext.request.contextPath}/addPeep"> <label>Add a Peep</label></a></td>
+            <td class="navigation">
+                <a href="${pageContext.request.contextPath}/addPeep">
+                    <div class="divLink">Add New Employee</div>
+                </a>
+            </td>
         </tr>
     </table>
 </div>
 
 <script type="text/javascript">
-    options = {
-        valueNames: [ 'employeeId', 'firstName', 'lastName', 'address1', 'address2',
-            'city', 'state', 'zip', 'phone', 'startDate' ]
-    };
+    $(function() {
+        options = {
+            valueNames: [ 'employeeId', 'firstName', 'lastName', 'address1', 'address2',
+                'city', 'state', 'zip', 'phone', 'startDate' ]
+        };
 
-    var userList = new List('peeps', options);
+        var userList = new List('peeps', options);
 
+        $("#searchOptions").change(function() {
+            var selected = $("#searchOptions").val();
 
-    function handleChange() {
-        var optionsList = document.getElementById("searchOptions");
-        var selected = optionsList.options[optionsList.selectedIndex].value;
-        var searchValue = document.getElementById("search");
+            if (selected == "employeeId") {
+                options = {
+                    valueNames: [ 'employeeId' ]
+                };
+            } else if (selected == 'firstName') {
+                options = {
+                    valueNames: [ 'firstName' ]
+                };
+            } else if (selected == 'lastName') {
+                options = {
+                    valueNames: [ 'lastName' ]
+                };
+            } else if (selected == 'startDate') {
+                options = {
+                    valueNames: [ 'startDate' ]
+                };
+            } else if (selected == "all") {
+                options = {
+                    valueNames: [ 'employeeId', 'firstName', 'lastName', 'address1', 'address2',
+                        'city', 'state', 'zip', 'phone', 'startDate' ]
+                };
+            }
 
-        if (searchValue.value != "") {
-            searchValue.value = "";
-        }
-        if (selected == "employeeId") {
-            this.options = {
-                valueNames: [ 'employeeId' ]
-            };
-        } else if (selected == 'firstName') {
-            this.options = {
-                valueNames: [ 'firstName' ]
-            };
-        } else if (selected == 'lastName') {
-            this.options = {
-                valueNames: [ 'lastName' ]
-            };
-        } else if (selected == 'startDate') {
-            this.options = {
-                valueNames: [ 'startDate' ]
-            };
-        } else if (selected == "all") {
-            this.options = {
-                valueNames: [ 'employeeId', 'firstName', 'lastName', 'address1', 'address2',
-                    'city', 'state', 'zip', 'phone', 'startDate' ]
-            };
-        }
+            userList = new List('peeps', options);
+        });
 
-        userList = new List('peeps', options);
-    }
+        $("#search").keyup(function() {
+            if($(this).val() != '') {
+                $("#searchOptions").attr("disabled", true);
+            } else {
+                $("#searchOptions").attr("disabled", false);
+            }
+        })
+    });
 
-
-    //  new List(div id name, var above)
+//    $(document).ready(function() {
+//        if ($("#search").val().length > 0) {
+//            $("#searchOptions").attr("disabled", "disabled");
+//        }
+//    })
 
 </script>
 </body>

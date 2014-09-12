@@ -34,6 +34,7 @@ caption {
 a {
     color:#666;
     text-decoration: none;
+    cursor:pointer;
 }
 
 input#search {
@@ -46,7 +47,6 @@ input#search {
 div.divLink {
     height: 100%;
     width: 100%;
-    text-align: center;
 }
 
 button.submit {
@@ -55,6 +55,7 @@ button.submit {
     padding:0!important;
     height: 100%;
     width: 100%;
+    cursor:pointer;
     font-family: "Times New Roman", Times, serif;
     font-size: 15px;
     color:#666;
@@ -83,6 +84,7 @@ tr.even-row td {background:#f6f6f6;}
 td.navigation {
     text-shadow: 1px 1px 1px #fff; background:#e8eaeb;
     width: 50%;
+    text-align: center;
 }
 
 td.navigation:hover {
@@ -94,4 +96,9 @@ td.successMessage {
     background: #47b101;
     color: #fefefe;
     text-align: center;
+}
+
+ul.pagination {
+    display:inline-block;
+    padding:5px;
 }
