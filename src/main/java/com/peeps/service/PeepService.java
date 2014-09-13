@@ -8,7 +8,6 @@ import org.hibernate.cfg.AnnotationConfiguration;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -21,11 +20,12 @@ public class PeepService {
     @Resource
     Peeps peeps;
 
+    private final SessionFactory sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
+
     public List getPeeps() {
-        SessionFactory sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
+
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-
         Query query = session.createQuery("from Peeps order by employee_id");
         List peeps = query.list();
         session.close();
@@ -35,33 +35,31 @@ public class PeepService {
 
     public boolean createPeep(String firstName,String lastName,String address1,String address2,String city,
                               String state,String zip,String phone,String startDate) {
+        Session session = sessionFactory.openSession();
         boolean isSuccess = true;
-        try {
-            Date parsedStartDate = new SimpleDateFormat("MM/dd/yyyy").parse(startDate);
-            peeps.setFirstName(firstName);
-            peeps.setLastName(lastName);
-            peeps.setAddress1(address1);
-            peeps.setAddress2(address2);
-            peeps.setCity(city);
-            peeps.setState(state);
-            peeps.setZip(zip);
-            peeps.setPhone(phone);
-            peeps.setStartDate(parsedStartDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        Date parsedStartDate;
+
+        peeps.setFirstName(firstName);
+        peeps.setLastName(lastName);
+        peeps.setAddress1(address1);
+        peeps.setAddress2(address2);
+        peeps.setCity(city);
+        peeps.setState(state);
+        peeps.setZip(zip);
+        peeps.setPhone(phone);
 
         try {
-            SessionFactory sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
-            Session session = sessionFactory.openSession();
+            parsedStartDate = new SimpleDateFormat("MM/dd/yyyy").parse(startDate);
+            peeps.setStartDate(parsedStartDate);
             session.beginTransaction();
             session.save(peeps);
             session.getTransaction().commit();
-            session.close();
         } catch (Exception e) {
             e.printStackTrace();
             isSuccess = false;
+            session.getTransaction().rollback();
         }
+        session.close();
 
         return isSuccess;
     }
@@ -104,11 +102,15 @@ public class PeepService {
 
         if (editRecieved) {
             peeps.setEmployeeId(employeeId);
-            SessionFactory sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
             Session session = sessionFactory.openSession();
-            session.beginTransaction();
-            session.update(peeps);
-            session.getTransaction().commit();
+            try {
+                session.beginTransaction();
+                session.update(peeps);
+                session.getTransaction().commit();
+            }catch (Exception e) {
+                e.printStackTrace();
+                session.getTransaction().rollback();
+            }
             session.close();
         }
     }
