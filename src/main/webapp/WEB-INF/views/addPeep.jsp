@@ -82,7 +82,7 @@
     <tbody>
     <tr>
         <td class="successMessage">
-            Congrats! You created an Employee!
+            Congrats! You created a new Employee!
         </td>
     </tr>
     </tbody>
@@ -95,7 +95,7 @@
         $("#startDate").datepicker();
 
         if(${not empty isSuccess}) {
-            $("#successTable").show().delay(5000).fadeOut();
+            $("#successTable").show().delay(2000).fadeOut();
         }
     });
 </script>

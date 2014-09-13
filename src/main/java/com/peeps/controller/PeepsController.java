@@ -41,7 +41,7 @@ public class PeepsController {
                              @RequestParam(value = "zip")String zip,
                              @RequestParam(value = "phone")String phone,
                              @RequestParam(value = "startDate")String startDate,
-                             RedirectAttributes model) {
+                             Model model) {
 
         model.addAttribute("isSuccess", peepService.createPeep(firstName,lastName,address1,address2,
                 city,state,zip,phone,startDate));

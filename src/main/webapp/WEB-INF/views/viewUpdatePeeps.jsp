@@ -63,9 +63,10 @@
             <tr>
                 </c:otherwise>
             </c:choose>
-                <td id="tdEdit_${peep.employeeId}"><input id="edit_${peep.employeeId}" type="button" value="Edit"/></td>
-                <td id="tdUpdate_${peep.employeeId}" hidden="hidden"><input id="update_${peep.employeeId}" type="button" value="Update" hidden="hidden"/></td>
+                <td id="tdEdit_${peep.employeeId}"><input id="edit_${peep.employeeId}" type="button" class="sexyButton" value="Edit"/></td>
+                <td id="tdUpdate_${peep.employeeId}" hidden="hidden"><input id="update_${peep.employeeId}" type="button" class="sexyButton" value="Update" hidden="hidden"/></td>
                 <td class="employeeId"><input type="hidden" id="employeeId_${peep.employeeId}" value="${peep.employeeId}"/>${peep.employeeId}</td>
+                <%-- ============== All the editable fields ================ --%>
                 <td class="firstName"><input id="firstName_${peep.employeeId}" class="baseInput" value="${peep.firstName}" disabled/></td>
                 <td class="lastName"><input id="lastName_${peep.employeeId}" class="baseInput" value="${peep.lastName}" disabled/></td>
                 <td class="address1"><input id="address1_${peep.employeeId}" class="baseInput" value="${peep.address1}" disabled/></td>
@@ -74,6 +75,7 @@
                 <td class="state"><input id="state_${peep.employeeId}" class="baseInput" value="${peep.state}" disabled/></td>
                 <td class="zip"><input id="zip_${peep.employeeId}" class="baseInput" value="${peep.zip}" disabled/></td>
                 <td class="phone"><input id="phone_${peep.employeeId}" class="baseInput" value="${peep.phone}" disabled/></td>
+                <%-- ======================================================= --%>
                 <td class="startDate">${peep.startDate}</td>
             </tr>
             </c:forEach>
