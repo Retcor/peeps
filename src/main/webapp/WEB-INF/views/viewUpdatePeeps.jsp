@@ -12,6 +12,7 @@
     <script src="${pageContext.request.contextPath}/resources/js/list.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery-2.1.1.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/viewAndEdit.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/jquery-ui.css"/>
     <title>Peeps</title>
@@ -63,16 +64,16 @@
                 </c:otherwise>
             </c:choose>
                 <td id="tdEdit_${peep.employeeId}"><input id="edit_${peep.employeeId}" type="button" value="Edit"/></td>
-                <td id="tdUpdate_${peep.employeeId}" hidden="hidden"><input id="update_${peep.employeeId}" type="submit" value="Update" hidden="hidden"/></td>
-                <td class="employeeId"><input type="hidden" name="employeeId" value="${peep.employeeId}">${peep.employeeId}</td>
-                <td class="firstName"><input name="firstName" value="${peep.firstName}"/></td>
-                <td class="lastName"><input name="lastName" value="${peep.lastName}"/></td>
-                <td class="address1"><input name="address1" value="${peep.address1}"/></td>
-                <td class="address2"><input name="address2" value="${peep.address2}"/></td>
-                <td class="city"><input name="city" value="${peep.city}"/></td>
-                <td class="state"><input name="state" value="${peep.state}"/></td>
-                <td class="zip"><input name="zip" value="${peep.zip}"/></td>
-                <td class="phone"><input name="phone" value="${peep.phone}"/></td>
+                <td id="tdUpdate_${peep.employeeId}" hidden="hidden"><input id="update_${peep.employeeId}" type="button" value="Update" hidden="hidden"/></td>
+                <td class="employeeId"><input type="hidden" id="employeeId_${peep.employeeId}" value="${peep.employeeId}"/>${peep.employeeId}</td>
+                <td class="firstName"><input id="firstName_${peep.employeeId}" class="baseInput" value="${peep.firstName}" disabled/></td>
+                <td class="lastName"><input id="lastName_${peep.employeeId}" class="baseInput" value="${peep.lastName}" disabled/></td>
+                <td class="address1"><input id="address1_${peep.employeeId}" class="baseInput" value="${peep.address1}" disabled/></td>
+                <td class="address2"><input id="address2_${peep.employeeId}" class="baseInput" value="${peep.address2}" disabled/></td>
+                <td class="city"><input id="city_${peep.employeeId}" class="baseInput" value="${peep.city}" disabled/></td>
+                <td class="state"><input id="state_${peep.employeeId}" class="baseInput" value="${peep.state}" disabled/></td>
+                <td class="zip"><input id="zip_${peep.employeeId}" class="baseInput" value="${peep.zip}" disabled/></td>
+                <td class="phone"><input id="phone_${peep.employeeId}" class="baseInput" value="${peep.phone}" disabled/></td>
                 <td class="startDate">${peep.startDate}</td>
             </tr>
             </c:forEach>
@@ -89,68 +90,5 @@
         </tr>
     </table>
 </div>
-
-<script type="text/javascript">
-    $(function() {
-        // ======= List.JS Required Information =============
-        // List.JS needs this information to know what to search.
-        // valueNames are the class names of td tags
-        options = {
-            valueNames: [ 'employeeId', 'firstName', 'lastName', 'address1', 'address2',
-                'city', 'state', 'zip', 'phone', 'startDate' ]
-        };
-
-        var userList = new List('peeps', options);
-
-        $("#searchOptions").change(function() {
-            var selected = $("#searchOptions").val();
-
-            if (selected == "employeeId") {
-                options = {
-                    valueNames: [ 'employeeId' ]
-                };
-            } else if (selected == 'firstName') {
-                options = {
-                    valueNames: [ 'firstName' ]
-                };
-            } else if (selected == 'lastName') {
-                options = {
-                    valueNames: [ 'lastName' ]
-                };
-            } else if (selected == 'startDate') {
-                options = {
-                    valueNames: [ 'startDate' ]
-                };
-            } else if (selected == "all") {
-                options = {
-                    valueNames: [ 'employeeId', 'firstName', 'lastName', 'address1', 'address2',
-                        'city', 'state', 'zip', 'phone', 'startDate' ]
-                };
-            }
-
-            userList = new List('peeps', options);
-        });
-
-        // ==================================================
-
-        $("#search").keyup(function() {
-            if($(this).val() != '') {
-                $("#searchOptions").attr("disabled", true);
-            } else {
-                $("#searchOptions").attr("disabled", false);
-            }
-        });
-
-        $('input[id^="edit_"]').click(function() {
-            var id = $(this).attr("id");
-            var number = id.split("_");
-            $("#update_" + number[1]).attr("hidden", false);
-            $("#tdUpdate_" + number[1]).attr("hidden", false);
-            $("#edit_" + number[1]).attr("hidden", true);
-            $("#tdEdit_" + number[1]).attr("hidden", true);
-        })
-    });
-
-</script>
 </body>
 </html>

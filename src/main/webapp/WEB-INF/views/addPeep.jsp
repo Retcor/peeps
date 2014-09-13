@@ -78,23 +78,25 @@
 </table>
 </form>
 
-<c:if test="${isSuccess}">
-    <table id="successTable">
-        <tbody>
-        <tr>
-            <td class="successMessage">
-                Congrats! You created an Employee!
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</c:if>
+<table id="successTable" hidden="hidden">
+    <tbody>
+    <tr>
+        <td class="successMessage">
+            Congrats! You created an Employee!
+        </td>
+    </tr>
+    </tbody>
+</table>
 
 
 
 <script type="text/javascript">
-    $(function() {
+    $(document).ready(function() {
         $("#startDate").datepicker();
+
+        if(${not empty isSuccess}) {
+            $("#successTable").show().delay(5000).fadeOut();
+        }
     });
 </script>
 </body>

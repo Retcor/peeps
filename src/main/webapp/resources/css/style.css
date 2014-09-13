@@ -102,3 +102,16 @@ ul.pagination {
     display:inline-block;
     padding:5px;
 }
+
+input.baseInput {
+    outline: none;
+    background: transparent;
+    border: 0 solid;
+    width: 100%;
+    color: #3f3f3f;
+
+}
+input.editInput {
+    width: 100%;
+}
+

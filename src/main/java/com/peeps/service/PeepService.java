@@ -26,7 +26,7 @@ public class PeepService {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        Query query = session.createQuery("from Peeps");
+        Query query = session.createQuery("from Peeps order by employee_id");
         List peeps = query.list();
         session.close();
 
