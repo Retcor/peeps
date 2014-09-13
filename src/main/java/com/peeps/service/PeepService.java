@@ -107,7 +107,7 @@ public class PeepService {
             SessionFactory sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
             Session session = sessionFactory.openSession();
             session.beginTransaction();
-            session.save(peeps);
+            session.update(peeps);
             session.getTransaction().commit();
             session.close();
         }

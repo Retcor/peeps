@@ -76,6 +76,7 @@
     </tr>
     </tbody>
 </table>
+</form>
 
 <c:if test="${isSuccess}">
     <table id="successTable">
@@ -89,7 +90,7 @@
     </table>
 </c:if>
 
-</form>
+
 
 <script type="text/javascript">
     $(function() {

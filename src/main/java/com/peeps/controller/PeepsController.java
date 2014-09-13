@@ -61,6 +61,6 @@ public class PeepsController {
 
         peepService.editPeep(firstName,lastName,address1,address2,city,state,zip,phone,employeeId);
 
-        return "redirect:/viewUpdatePeeps";
+        return "redirect:/viewAndEdit";
     }
 }

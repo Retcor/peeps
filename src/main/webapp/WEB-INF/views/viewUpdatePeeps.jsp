@@ -35,10 +35,11 @@
         </tr>
     </table>
 
-
+<form id="updateEmployee" action="${pageContext.request.contextPath}/editPeep" method="POST">
     <table>
         <caption>Employees</caption>
         <tr>
+            <th></th>
             <th>ID</th>
             <th>First Name</th>
             <th>Last Name</th>
@@ -61,20 +62,23 @@
             <tr>
                 </c:otherwise>
             </c:choose>
-                <td class="employeeId">${peep.employeeId}</td>
-                <td class="firstName">${peep.firstName}</td>
-                <td class="lastName">${peep.lastName}</td>
-                <td class="address1">${peep.address1}</td>
-                <td class="address2">${peep.address2}</td>
-                <td class="city">${peep.city}</td>
-                <td class="state">${peep.state}</td>
-                <td class="zip">${peep.zip}</td>
-                <td class="phone">${peep.phone}</td>
+                <td id="tdEdit_${peep.employeeId}"><input id="edit_${peep.employeeId}" type="button" value="Edit"/></td>
+                <td id="tdUpdate_${peep.employeeId}" hidden="hidden"><input id="update_${peep.employeeId}" type="submit" value="Update" hidden="hidden"/></td>
+                <td class="employeeId"><input type="hidden" name="employeeId" value="${peep.employeeId}">${peep.employeeId}</td>
+                <td class="firstName"><input name="firstName" value="${peep.firstName}"/></td>
+                <td class="lastName"><input name="lastName" value="${peep.lastName}"/></td>
+                <td class="address1"><input name="address1" value="${peep.address1}"/></td>
+                <td class="address2"><input name="address2" value="${peep.address2}"/></td>
+                <td class="city"><input name="city" value="${peep.city}"/></td>
+                <td class="state"><input name="state" value="${peep.state}"/></td>
+                <td class="zip"><input name="zip" value="${peep.zip}"/></td>
+                <td class="phone"><input name="phone" value="${peep.phone}"/></td>
                 <td class="startDate">${peep.startDate}</td>
             </tr>
             </c:forEach>
         </tbody>
     </table>
+</form>
     <table>
         <tr>
             <td class="navigation">
@@ -89,7 +93,8 @@
 <script type="text/javascript">
     $(function() {
         // ======= List.JS Required Information =============
-        // List.JS needs this information to know what to search
+        // List.JS needs this information to know what to search.
+        // valueNames are the class names of td tags
         options = {
             valueNames: [ 'employeeId', 'firstName', 'lastName', 'address1', 'address2',
                 'city', 'state', 'zip', 'phone', 'startDate' ]
@@ -134,14 +139,17 @@
             } else {
                 $("#searchOptions").attr("disabled", false);
             }
+        });
+
+        $('input[id^="edit_"]').click(function() {
+            var id = $(this).attr("id");
+            var number = id.split("_");
+            $("#update_" + number[1]).attr("hidden", false);
+            $("#tdUpdate_" + number[1]).attr("hidden", false);
+            $("#edit_" + number[1]).attr("hidden", true);
+            $("#tdEdit_" + number[1]).attr("hidden", true);
         })
     });
-
-//    $(document).ready(function() {
-//        if ($("#search").val().length > 0) {
-//            $("#searchOptions").attr("disabled", "disabled");
-//        }
-//    })
 
 </script>
 </body>
