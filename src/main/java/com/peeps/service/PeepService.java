@@ -17,8 +17,6 @@ import java.util.List;
  */
 @Service
 public class PeepService {
-    @Resource
-    Peeps peeps;
 
     private final SessionFactory sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
 
@@ -37,7 +35,7 @@ public class PeepService {
                               String state,String zip,String phone,Date startDate) {
         Session session = sessionFactory.openSession();
         boolean isSuccess = true;
-        peeps = new Peeps();
+        Peeps peeps = new Peeps();
 
         peeps.setFirstName(firstName);
         peeps.setLastName(lastName);
@@ -65,7 +63,7 @@ public class PeepService {
 
     public void editPeep(String firstName,String lastName,String address1,String address2,String city,
                          String state,String zip,String phone,int employeeId) {
-        peeps = new Peeps();
+        Peeps peeps = new Peeps();
         boolean editRecieved = false;
         if (!"".equalsIgnoreCase(firstName)) {
             peeps.setFirstName(firstName);
