@@ -34,10 +34,10 @@ public class PeepService {
     }
 
     public boolean createPeep(String firstName,String lastName,String address1,String address2,String city,
-                              String state,String zip,String phone,String startDate) {
+                              String state,String zip,String phone,Date startDate) {
         Session session = sessionFactory.openSession();
         boolean isSuccess = true;
-        Date parsedStartDate;
+        peeps = new Peeps();
 
         peeps.setFirstName(firstName);
         peeps.setLastName(lastName);
@@ -49,8 +49,7 @@ public class PeepService {
         peeps.setPhone(phone);
 
         try {
-            parsedStartDate = new SimpleDateFormat("MM/dd/yyyy").parse(startDate);
-            peeps.setStartDate(parsedStartDate);
+            peeps.setStartDate(startDate);
             session.beginTransaction();
             session.save(peeps);
             session.getTransaction().commit();
@@ -66,6 +65,7 @@ public class PeepService {
 
     public void editPeep(String firstName,String lastName,String address1,String address2,String city,
                          String state,String zip,String phone,int employeeId) {
+        peeps = new Peeps();
         boolean editRecieved = false;
         if (!"".equalsIgnoreCase(firstName)) {
             peeps.setFirstName(firstName);

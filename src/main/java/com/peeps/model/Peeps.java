@@ -1,11 +1,13 @@
 package com.peeps.model;
 
 import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Repository;
-import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
@@ -16,11 +18,14 @@ import java.util.Date;
  *      Database if needed
  * @Repository - Allows Spring to recognize this class to allow for dependency injection
  * @Table - Tells Hibernate what table to look at / create
+ * @org.hibernate.annotations.Entity - Setting dynamicUpdate to true will ensure that fields
+ *      that haven't been set won't be updated
  */
 @Data
 @Entity
 @Repository
 @Table(name = "PEEPS")
+@org.hibernate.annotations.Entity(dynamicUpdate = true)
 public class Peeps {
     @Id
     @GenericGenerator(name = "peep_seq", strategy = "increment")
@@ -52,6 +57,8 @@ public class Peeps {
     @Column(name = "PHONE")
     private String phone;
 
-    @Column(name = "START_DATE")
+    @Column(name = "START_DATE",updatable = false)
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "MM/dd/yyyy")
     private Date startDate;
 }

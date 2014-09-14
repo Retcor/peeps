@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * Created by danbaker on 9/3/14.
@@ -40,7 +41,7 @@ public class PeepsController {
                              @RequestParam(value = "state")String state,
                              @RequestParam(value = "zip")String zip,
                              @RequestParam(value = "phone")String phone,
-                             @RequestParam(value = "startDate")String startDate,
+                             @RequestParam(value = "startDate")Date startDate,
                              Model model) {
 
         model.addAttribute("isSuccess", peepService.createPeep(firstName,lastName,address1,address2,

@@ -76,7 +76,7 @@
                 <td class="zip"><input id="zip_${peep.employeeId}" class="baseInput" value="${peep.zip}" disabled/></td>
                 <td class="phone"><input id="phone_${peep.employeeId}" class="baseInput" value="${peep.phone}" disabled/></td>
                 <%-- ======================================================= --%>
-                <td class="startDate">${peep.startDate}</td>
+                <td class="startDate"><input type="hidden" id="startDate_${peep.employeeId}" value="${peep.startDate}"/>${peep.startDate}</td>
             </tr>
             </c:forEach>
         </tbody>
