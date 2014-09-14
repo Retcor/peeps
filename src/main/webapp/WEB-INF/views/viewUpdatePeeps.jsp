@@ -37,6 +37,16 @@
         </tr>
     </table>
 
+    <table>
+        <tr>
+            <td class="navigation">
+                <a href="${pageContext.request.contextPath}/addPeep">
+                    <div class="divLink">Add New Employee</div>
+                </a>
+            </td>
+        </tr>
+    </table>
+
 <form id="updateEmployee" action="${pageContext.request.contextPath}/editPeep" method="POST">
     <table>
         <caption>Employees</caption>
@@ -83,15 +93,7 @@
         </tbody>
     </table>
 </form>
-    <table>
-        <tr>
-            <td class="navigation">
-                <a href="${pageContext.request.contextPath}/addPeep">
-                    <div class="divLink">Add New Employee</div>
-                </a>
-            </td>
-        </tr>
-    </table>
+
 </div>
 </body>
 </html>

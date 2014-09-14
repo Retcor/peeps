@@ -53,11 +53,11 @@
         </tr>
         <tr>
             <td><label for="phone">Phone: </label></td>
-            <td><input id="phone" name="phone"/></td>
+            <td><input id="phone" name="phone" placeholder="(888) 888-8888"/></td>
         </tr>
         <tr>
             <td><label for="startDate">Start Date: </label></td>
-            <td><input id="startDate" name="startDate" type="date"/></td>
+            <td><input id="startDate" name="startDate" type="date" placeholder="mm/dd/yyyy"/></td>
         </tr>
 
     </tbody>
@@ -97,6 +97,13 @@
         if(${not empty isSuccess}) {
             $("#successTable").show().delay(2000).fadeOut();
         }
+
+        $("#phone").blur(function() {
+            var unformatPhone = $(this).val().replace(/\D/g, '');
+            var matchFormat = unformatPhone.match(/^(\d{3})(\d{3})(\d{4})$/);
+
+            $(this).val(!matchFormat ? "" : "(" + matchFormat[1] + ") " + matchFormat[2] + "-" + matchFormat[3]);
+        });
     });
 </script>
 </body>
