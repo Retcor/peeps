@@ -13,6 +13,7 @@
     <script src="${pageContext.request.contextPath}/resources/js/jquery-2.1.1.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/viewAndEdit.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.autosize.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/jquery-ui.css"/>
     <title>Peeps</title>
@@ -67,14 +68,14 @@
                 <td id="tdUpdate_${peep.employeeId}" hidden="hidden"><input id="update_${peep.employeeId}" type="button" class="sexyButton" value="Update" hidden="hidden"/></td>
                 <td class="employeeId"><input type="hidden" id="employeeId_${peep.employeeId}" value="${peep.employeeId}"/>${peep.employeeId}</td>
                 <%-- ============== All the editable fields ================ --%>
-                <td class="firstName"><input id="firstName_${peep.employeeId}" class="baseInput" value="${peep.firstName}" disabled/></td>
-                <td class="lastName"><input id="lastName_${peep.employeeId}" class="baseInput" value="${peep.lastName}" disabled/></td>
-                <td class="address1"><input id="address1_${peep.employeeId}" class="baseInput" value="${peep.address1}" disabled/></td>
-                <td class="address2"><input id="address2_${peep.employeeId}" class="baseInput" value="${peep.address2}" disabled/></td>
-                <td class="city"><input id="city_${peep.employeeId}" class="baseInput" value="${peep.city}" disabled/></td>
-                <td class="state"><input id="state_${peep.employeeId}" class="baseInput" value="${peep.state}" disabled/></td>
-                <td class="zip"><input id="zip_${peep.employeeId}" class="baseInput" value="${peep.zip}" disabled/></td>
-                <td class="phone"><input id="phone_${peep.employeeId}" class="baseInput" value="${peep.phone}" disabled/></td>
+                <td class="firstName"><textarea id="firstName_${peep.employeeId}" class="baseInput" rows="1" cols="15" readonly>${peep.firstName}</textarea></td>
+                <td class="lastName"><textarea rows="1" cols="15" id="lastName_${peep.employeeId}" class="baseInput" readonly>${peep.lastName}</textarea></td>
+                <td class="address1"><textarea rows="1" cols="15" id="address1_${peep.employeeId}" class="baseInput" readonly>${peep.address1}</textarea></td>
+                <td class="address2"><textarea rows="1" cols="15" id="address2_${peep.employeeId}" class="baseInput" readonly>${peep.address2}</textarea></td>
+                <td class="city"><textarea rows="1" cols="15" id="city_${peep.employeeId}" class="baseInput" readonly>${peep.city}</textarea></td>
+                <td class="state"><textarea rows="1" cols="5" id="state_${peep.employeeId}" class="baseInput" readonly>${peep.state}</textarea></td>
+                <td class="zip"><textarea rows="1" cols="10" id="zip_${peep.employeeId}" class="baseInput" readonly>${peep.zip}</textarea></td>
+                <td class="phone"><textarea rows="1" cols="13" id="phone_${peep.employeeId}" class="baseInput" readonly>${peep.phone}</textarea></td>
                 <%-- ======================================================= --%>
                 <td class="startDate"><input type="hidden" id="startDate_${peep.employeeId}" value="${peep.startDate}"/>${peep.startDate}</td>
             </tr>

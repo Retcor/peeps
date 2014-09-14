@@ -71,35 +71,35 @@ $(function() {
         firstNameInput
             .removeClass('baseInput')
             .addClass('editInput')
-            .attr('disabled',false);
+            .attr('readonly',false);
         lastNameInput
             .removeClass('baseInput')
             .addClass('editInput')
-            .attr('disabled',false);
+            .attr('readonly',false);
         address1Input
             .removeClass('baseInput')
             .addClass('editInput')
-            .attr('disabled',false);
+            .attr('readonly',false);
         address2Input
             .removeClass('baseInput')
             .addClass('editInput')
-            .attr('disabled',false);
+            .attr('readonly',false);
         cityInput
             .removeClass('baseInput')
             .addClass('editInput')
-            .attr('disabled',false);
+            .attr('readonly',false);
         stateInput
             .removeClass('baseInput')
             .addClass('editInput')
-            .attr('disabled',false);
+            .attr('readonly',false);
         zipInput
             .removeClass('baseInput')
             .addClass('editInput')
-            .attr('disabled',false);
+            .attr('readonly',false);
         phoneInput
             .removeClass('baseInput')
             .addClass('editInput')
-            .attr('disabled',false);
+            .attr('readonly',false);
     });
     $('input[id^="update_"]').click(function() {
         var id = $(this).attr("id");
@@ -121,35 +121,35 @@ $(function() {
         firstNameInput
             .removeClass('editInput')
             .addClass('baseInput')
-            .attr('disabled',true);
+            .attr('readonly',true);
         lastNameInput
             .removeClass('editInput')
             .addClass('baseInput')
-            .attr('disabled',true);
+            .attr('readonly',true);
         address1Input
             .removeClass('editInput')
             .addClass('baseInput')
-            .attr('disabled',true);
+            .attr('readonly',true);
         address2Input
             .removeClass('editInput')
             .addClass('baseInput')
-            .attr('disabled',true);
+            .attr('readonly',true);
         cityInput
             .removeClass('editInput')
             .addClass('baseInput')
-            .attr('disabled',true);
+            .attr('readonly',true);
         stateInput
             .removeClass('editInput')
             .addClass('baseInput')
-            .attr('disabled',true);
+            .attr('readonly',true);
         zipInput
             .removeClass('editInput')
             .addClass('baseInput')
-            .attr('disabled',true);
+            .attr('readonly',true);
         phoneInput
             .removeClass('editInput')
             .addClass('baseInput')
-            .attr('disabled',true);
+            .attr('readonly',true);
 
         var data = 'employeeId='+ $("#employeeId_" + number[1]).val()
             + '&firstName=' + firstNameInput.val()
@@ -174,4 +174,6 @@ $(function() {
             }
         });
     })
+
+    $('textarea').autosize();
 });
