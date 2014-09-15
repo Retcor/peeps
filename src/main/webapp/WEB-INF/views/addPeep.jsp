@@ -57,7 +57,7 @@
         </tr>
         <tr>
             <td><label for="startDate">Start Date: </label></td>
-            <td><input id="startDate" name="startDate" type="date" placeholder="mm/dd/yyyy"/></td>
+            <td><input id="startDate" name="startDate" placeholder="mm/dd/yyyy"/></td>
         </tr>
 
     </tbody>
